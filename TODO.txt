@@ -1,0 +1,7 @@
+Gestion des noms de segment
+Animations à la création et suppression des segments
+Gestion des répétitions de segment
+Synchronisation du store avec le cache du navigateur
+Refacto HOC Redux en hooks
+Proposer distances prédéfinies
+Proposer de changer les unités (temps aux 100m et aux 400m, nb de tours de stade, ...)
