@@ -17,9 +17,8 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
-    "typescript": "3.3.3",
-    "jest": "25.1.0",
-    "prop-types": "15.7.2"
+    "prop-types": "15.7.2",
+    "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
