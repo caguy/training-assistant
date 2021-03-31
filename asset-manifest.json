@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/training-assistant/static/js/main.75fb3af1.chunk.js",
+    "main.js.map": "/training-assistant/static/js/main.75fb3af1.chunk.js.map",
+    "runtime-main.js": "/training-assistant/static/js/runtime-main.7fe44504.js",
+    "runtime-main.js.map": "/training-assistant/static/js/runtime-main.7fe44504.js.map",
+    "static/js/2.d19c12cf.chunk.js": "/training-assistant/static/js/2.d19c12cf.chunk.js",
+    "static/js/2.d19c12cf.chunk.js.map": "/training-assistant/static/js/2.d19c12cf.chunk.js.map",
+    "index.html": "/training-assistant/index.html",
+    "static/js/2.d19c12cf.chunk.js.LICENSE.txt": "/training-assistant/static/js/2.d19c12cf.chunk.js.LICENSE.txt",
+    "static/media/arrow_icon.a9d92369.svg": "/training-assistant/static/media/arrow_icon.a9d92369.svg",
+    "static/media/delete_icon.92696a23.svg": "/training-assistant/static/media/delete_icon.92696a23.svg",
+    "static/media/fold_icon.a60a8f65.svg": "/training-assistant/static/media/fold_icon.a60a8f65.svg",
+    "static/media/increase_icon.c696fee2.svg": "/training-assistant/static/media/increase_icon.c696fee2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7fe44504.js",
+    "static/js/2.d19c12cf.chunk.js",
+    "static/js/main.75fb3af1.chunk.js"
+  ]
+}

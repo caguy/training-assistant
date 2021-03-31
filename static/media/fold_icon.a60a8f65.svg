@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.175" height="22.04" viewBox="0 0 19.175 22.04">
+  <g id="fold_icon" data-name="fold_icon" transform="translate(-1516.545 -288.611)">
+    <g id="inside" transform="translate(1535.72 301.063) rotate(135)">
+      <path id="arrow_edge" data-name="arrow_edge" d="M9.249,10.206H.957A.957.957,0,0,1,0,9.249V.957a.957.957,0,0,1,1.914,0V8.292H9.249a.957.957,0,1,1,0,1.914Zm0,0" transform="translate(0 3.353)" fill="#f7fafa"/>
+      <path id="arrow_core" data-name="arrow_core" d="M.957,13.559A.957.957,0,0,1,.28,11.924L11.925.28a.957.957,0,0,1,1.353,1.354L1.634,13.278A.954.954,0,0,1,.957,13.559Zm0,0" transform="translate(0 0)" fill="#f7fafa"/>
+    </g>
+    <line id="line" data-name="line" x2="13.352" transform="translate(1519.687 289.611)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>
