@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -9,30 +9,26 @@ import { renameSegment } from "state/actions";
 import StyledActionButton from "./StyledActionButton";
 import { ReactComponent as PencilIconSvg } from "static/pencil_icon.svg";
 
-const SegmentName = ({ segmentId, name, position, dispatchName }) => {
+const SegmentName = ({ segmentId, name, position, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef();
 
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current.focus();
-      inputRef.current.selectionStart = 0;
-      inputRef.current.selectionEnd = inputRef.current.value.length;
-    }
-  }, [isEditing]);
-
   function toggleEdit() {
-    setIsEditing(!isEditing);
+    if (isEditing) return;
+    inputRef.current.focus();
+    inputRef.current.selectionStart = 0;
+    inputRef.current.selectionEnd = inputRef.current.value.length;
+    setIsEditing(true);
   }
 
   function nameChangeHandler(event) {
     const name = event.target.value;
-    dispatchName(name);
+    dispatch(name);
   }
 
   function blurHandler(event) {
+    if (!event.target.value) dispatch(null);
     setIsEditing(false);
-    if (!event.target.value) dispatchName(null);
   }
 
   function keyDownHandler(event) {
@@ -52,10 +48,10 @@ const SegmentName = ({ segmentId, name, position, dispatchName }) => {
           ref={inputRef}
           type="text"
           value={displayedName}
+          onClick={toggleEdit}
           onChange={nameChangeHandler}
           onBlur={blurHandler}
           onKeyDown={keyDownHandler}
-          readOnly={!isEditing}
           maxLength={35}
         />
         <Placeholder aria-hidden>{displayedName}</Placeholder>
@@ -140,6 +136,10 @@ const ActionButton = styled(StyledActionButton)`
   bottom: 0.5em;
   left: -0.75em;
   z-index: 20;
+
+  @media screen and (max-width: ${({ theme }) => theme.bp.sm}px) {
+    bottom: 0;
+  }
 `;
 
 const ActionIcon = styled.svg`
@@ -157,7 +157,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    dispatchName: (value) => {
+    dispatch: (value) => {
       return dispatch(renameSegment(ownProps.segmentId, value));
     },
   };

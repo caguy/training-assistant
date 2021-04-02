@@ -68,7 +68,6 @@ const underlineStyle = css`
 
 const Wrapper = styled.div`
   position: relative;
-  float: left;
 
   &::before {
     ${underlineStyle}
@@ -103,7 +102,7 @@ const Input = styled.input`
 const Controls = styled.div`
   position: absolute;
   right: 0;
-  top: 0;
+  bottom: 0;
 `;
 
 const ButtonContainer = styled.button`
