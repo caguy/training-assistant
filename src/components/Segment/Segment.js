@@ -138,7 +138,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 50em;
   min-width: 21em;
-  margin: 2em auto;
+  margin: 2em auto 6em auto;
   z-index: 0;
 
   &:hover {
@@ -192,7 +192,7 @@ const Summary = styled.div`
   padding-top: 0.5em;
 
   transition: transform 150ms ease-in-out;
-  transform: translateY(${({ folded }) => (folded ? -2.5 : 0)}em);
+  transform: translateY(${({ folded }) => (folded ? 0.5 : 3)}em);
   overflow: hidden;
 
   @media screen and (min-width: ${({ theme }) => theme.bp.md}px) {
@@ -221,7 +221,7 @@ const FoldButton = styled.button`
   cursor: pointer;
 
   transition: transform 150ms ease-in-out;
-  transform: translateY(${({ folded }) => (folded ? -2.7 : 0)}em);
+  transform: translateY(${({ folded }) => (folded ? 0.3 : 3)}em);
 
   &:hover {
     path {

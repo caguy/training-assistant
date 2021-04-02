@@ -2,13 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import { Flipper, Flipped } from "react-flip-toolkit";
 
 import { Segment, Total } from "components";
 import { dispatchNewSegment } from "state/middlewares";
 
 const StatConverter = ({ segmentIds, addSegment }) => {
   const segmentComponents = segmentIds.map((segmentId) => (
-    <Segment key={segmentId} id={segmentId} />
+    <Flipped key={segmentId} flipId={segmentId}>
+      <div>
+        <Segment id={segmentId} />
+      </div>
+    </Flipped>
   ));
 
   return (
@@ -18,18 +23,22 @@ const StatConverter = ({ segmentIds, addSegment }) => {
           <H1>Votre entraînement</H1>
         </Title>
         <Body>
-          <H2>Définissez votre entraînement</H2>
-          <Subtitle>
-            <P>Quel est votre objectif aujourd’hui ?</P>
-            <P>
-              L'outil calcule pour vous les statistiques prévisionnelles de
-              votre entraînement pour vous aider préparer votre itinéraire.
-            </P>
-          </Subtitle>
-          <SegmentsContainer>{segmentComponents}</SegmentsContainer>
-          <AddButtonContainer>
-            <AddButton onClick={addSegment}>Ajouter une étape</AddButton>
-          </AddButtonContainer>
+          <Flipper flipKey={segmentIds.join("")}>
+            <H2>Définissez votre entraînement</H2>
+            <Subtitle>
+              <P>Quel est votre objectif aujourd’hui ?</P>
+              <P>
+                L'outil calcule pour vous les statistiques prévisionnelles de
+                votre entraînement pour vous aider préparer votre itinéraire.
+              </P>
+            </Subtitle>
+            <SegmentsContainer>{segmentComponents}</SegmentsContainer>
+            <Flipped flipId="addButton">
+              <AddButtonContainer>
+                <AddButton onClick={addSegment}>Ajouter une étape</AddButton>
+              </AddButtonContainer>
+            </Flipped>
+          </Flipper>
         </Body>
       </Main>
       <Total />
@@ -39,7 +48,7 @@ const StatConverter = ({ segmentIds, addSegment }) => {
 
 StatConverter.propTypes = {
   segmentIds: PropTypes.arrayOf(PropTypes.number),
-  addSegment: PropTypes.func.isRequired
+  addSegment: PropTypes.func.isRequired,
 };
 
 const Main = styled.main`
@@ -113,12 +122,12 @@ const P = styled.p`
 const SegmentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 4em 0;
+  margin: 4em 0 2em 0;
 `;
 
 const AddButtonContainer = styled.div`
   text-align: center;
-  margin: 4em 0;
+  margin: 2em 0;
 `;
 
 const AddButton = styled.button`
@@ -164,13 +173,13 @@ const AddButton = styled.button`
 
 function mapStateToProps(state) {
   return {
-    segmentIds: state.segments.map((segment) => segment.id)
+    segmentIds: state.segments.map((segment) => segment.id),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addSegment: () => dispatch(dispatchNewSegment())
+    addSegment: () => dispatch(dispatchNewSegment()),
   };
 }
 
