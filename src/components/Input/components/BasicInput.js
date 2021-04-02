@@ -10,7 +10,7 @@ const BasicInput = ({
   onChange,
   onIncrement,
   onDecrement,
-  width = "2em"
+  width = "2em",
 }) => {
   const onKeyDown = (e) => {
     switch (e.key) {
@@ -53,7 +53,7 @@ BasicInput.propTypes = {
   onChange: PropType.func.isRequired,
   onIncrement: PropType.func.isRequired,
   onDecrement: PropType.func.isRequired,
-  width: PropType.string
+  width: PropType.string,
 };
 
 const underlineStyle = css`
@@ -82,7 +82,8 @@ const Wrapper = styled.div`
     transition: opacity 250ms ease-in-out;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     &::after {
       opacity: 1;
     }
@@ -92,7 +93,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   color: ${({ theme }) => theme.color.body};
   font-size: 1.75em;
-  margin-right: 0.15em;
+  margin-right: 0.6em;
   text-align: center;
   border: none;
   background: none;
@@ -100,7 +101,9 @@ const Input = styled.input`
 `;
 
 const Controls = styled.div`
-  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 
 const ButtonContainer = styled.button`

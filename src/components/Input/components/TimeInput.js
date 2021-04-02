@@ -71,7 +71,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
     dispatchHandler: dispatchHandler("h"),
     nbDecimals: 0,
     maxValue: 99,
-    padStart: 2
+    padStart: 2,
   });
   const minHandler = useInput({
     initialValue: String(value.min),
@@ -79,7 +79,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
     overflowHandler: overflowHandler("min"),
     nbDecimals: 0,
     maxValue: 59,
-    padStart: 2
+    padStart: 2,
   });
   const secHandler = useInput({
     initialValue: String(value.sec),
@@ -87,7 +87,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
     overflowHandler: overflowHandler("sec"),
     nbDecimals: 0,
     maxValue: 59,
-    padStart: 2
+    padStart: 2,
   });
 
   return (
@@ -97,7 +97,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
         onChange={hHandler.onChange}
         onIncrement={hHandler.onIncrement}
         onDecrement={hHandler.onDecrement}
-        width="1.15em"
+        width="1.2em"
       />
       <StyledSeparator>:</StyledSeparator>
       <BasicInput
@@ -105,7 +105,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
         onChange={minHandler.onChange}
         onIncrement={minHandler.onIncrement}
         onDecrement={minHandler.onDecrement}
-        width="1.15em"
+        width="1.2em"
       />
       <StyledSeparator>:</StyledSeparator>
       <BasicInput
@@ -113,7 +113,7 @@ const TimeInput = ({ segmentId, value, dispatchValue }) => {
         onChange={secHandler.onChange}
         onIncrement={secHandler.onIncrement}
         onDecrement={secHandler.onDecrement}
-        width="1.15em"
+        width="1.2em"
       />
     </StyledInputWrapper>
   );
@@ -124,21 +124,21 @@ TimeInput.propTypes = {
   value: PropType.exact({
     h: PropType.number,
     min: PropType.number,
-    sec: PropType.number
+    sec: PropType.number,
   }).isRequired,
-  dispatchValue: PropType.func.isRequired
+  dispatchValue: PropType.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    value: getFieldValue(state, ownProps.segmentId, TIME.type)
+    value: getFieldValue(state, ownProps.segmentId, TIME.type),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatchValue: (segmentId, value) =>
-      dispatch(dispatchTime(segmentId, value))
+      dispatch(dispatchTime(segmentId, value)),
   };
 }
 

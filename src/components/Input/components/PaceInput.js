@@ -44,7 +44,7 @@ const PaceInput = ({ segmentId, value, dispatchValue }) => {
     initialValue: String(value.min),
     dispatchHandler: dispatchHandler("min"),
     nbDecimals: 0,
-    maxValue: 59
+    maxValue: 59,
   });
 
   const secHandler = useInput({
@@ -53,7 +53,7 @@ const PaceInput = ({ segmentId, value, dispatchValue }) => {
     overflowHandler: overflowHandler,
     nbDecimals: 0,
     maxValue: 59,
-    padStart: 2
+    padStart: 2,
   });
 
   return (
@@ -82,21 +82,21 @@ PaceInput.propType = {
   segmentId: PropType.number.isRequired,
   value: PropType.exact({
     min: PropType.number,
-    sec: PropType.number
+    sec: PropType.number,
   }).isRequired,
-  dispatchValue: PropType.func.isRequired
+  dispatchValue: PropType.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    value: getFieldValue(state, ownProps.segmentId, PACE.type)
+    value: getFieldValue(state, ownProps.segmentId, PACE.type),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatchValue: (segmentId, value) =>
-      dispatch(dispatchPace(segmentId, value))
+      dispatch(dispatchPace(segmentId, value)),
   };
 }
 
