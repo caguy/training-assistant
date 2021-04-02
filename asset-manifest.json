@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/training-assistant/static/js/main.963b0311.chunk.js",
-    "main.js.map": "/training-assistant/static/js/main.963b0311.chunk.js.map",
+    "main.js": "/training-assistant/static/js/main.7576ce0f.chunk.js",
+    "main.js.map": "/training-assistant/static/js/main.7576ce0f.chunk.js.map",
     "runtime-main.js": "/training-assistant/static/js/runtime-main.7fe44504.js",
     "runtime-main.js.map": "/training-assistant/static/js/runtime-main.7fe44504.js.map",
     "static/js/2.370a21c3.chunk.js": "/training-assistant/static/js/2.370a21c3.chunk.js",
@@ -17,6 +17,6 @@
   "entrypoints": [
     "static/js/runtime-main.7fe44504.js",
     "static/js/2.370a21c3.chunk.js",
-    "static/js/main.963b0311.chunk.js"
+    "static/js/main.7576ce0f.chunk.js"
   ]
 }
