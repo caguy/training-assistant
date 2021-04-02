@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
@@ -133,23 +134,32 @@ Segment.propTypes = {
   canMoveDown: PropTypes.bool,
 };
 
+const showActionButtons = css`
+  & .actionButton {
+    transform: scale(1);
+    opacity: 1;
+
+    &[disabled] {
+      opacity: 0.3;
+    }
+  }
+`;
+
 const Container = styled.div`
   position: relative;
   width: 100%;
   max-width: 50em;
-  min-width: 21em;
   margin: 2em auto 6em auto;
   z-index: 0;
 
-  &:hover {
-    & .actionButton {
-      transform: scale(1);
-      opacity: 1;
-
-      &[disabled] {
-        opacity: 0.3;
-      }
+  @media (hover: hover) {
+    &:hover {
+      ${showActionButtons}
     }
+  }
+
+  @media (hover: none) {
+    ${showActionButtons}
   }
 `;
 
@@ -193,7 +203,7 @@ const Summary = styled.div`
 
   transition: transform 150ms ease-in-out;
   transform: translateY(${({ folded }) => (folded ? 0.5 : 3)}em);
-  overflow: hidden;
+  overflow-x: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.bp.md}px) {
     left: 5.5em;
@@ -201,17 +211,18 @@ const Summary = styled.div`
   @media screen and (max-width: ${({ theme }) => theme.bp.md}px) {
     font-size: 80%;
     height: 3em;
-    bottom: 0.75em;
+    bottom: 0;
     border-radius: 0 0 15px 15px;
     padding-top: 0.25em;
   }
 `;
 
 const OutputsContainer = styled.div`
-  box-sizing: border-box;
-  margin: auto 4em auto 1em;
   display: flex;
   flex: auto;
+  box-sizing: border-box;
+  margin: auto 4em auto 1em;
+  padding-right: 3em;
 `;
 
 const FoldButton = styled.button`
@@ -234,7 +245,7 @@ const FoldButton = styled.button`
 
   @media screen and (max-width: ${({ theme }) => theme.bp.md}px) {
     bottom: 0.8em;
-    transform: translateY(${({ folded }) => (folded ? -2.4 : 0)}em);
+    transform: translateY(${({ folded }) => (folded ? 0.5 : 3)}em);
 
     path {
       fill: ${({ theme, folded }) => (folded ? theme.color.body : "")};

@@ -127,7 +127,7 @@ const SegmentsContainer = styled.div`
 
 const AddButtonContainer = styled.div`
   text-align: center;
-  margin: 2em 0;
+  margin: 2em 0 6em 0;
 `;
 
 const AddButton = styled.button`
