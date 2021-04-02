@@ -5,7 +5,8 @@ import {
   SET_INPUT_FIELD,
   SET_VALUE,
   TOGGLE_FOLD,
-  MOVE_SEGMENT
+  MOVE_SEGMENT,
+  RENAME_SEGMENT,
 } from "state/actionTypes";
 import { cloneDeep } from "lodash";
 import { getSegmentIndex } from "state/selectors";
@@ -14,18 +15,19 @@ let nextId;
 
 const defaultSegment = {
   id: null,
+  name: null,
   inputs: [SPEED.type, TIME.type],
   [SPEED.type]: {
     value: 10,
-    unit: SPEED.unit
+    unit: SPEED.unit,
   },
   [PACE.type]: {
     value: { min: 6, sec: 0 },
-    unit: PACE.unit
+    unit: PACE.unit,
   },
   [TIME.type]: { value: { h: 1, min: 0, sec: 0 }, unit: TIME.unit },
   [DISTANCE.type]: { value: 10, unit: DISTANCE.unit },
-  folded: false
+  folded: false,
 };
 
 const createSegment = () => {
@@ -51,7 +53,7 @@ export default function segments(state, action) {
             newInputs[1] = action.payload.newField;
           }
           return Object.assign({}, currentSegment, {
-            inputs: newInputs
+            inputs: newInputs,
           });
         }
         return currentSegment;
@@ -65,9 +67,9 @@ export default function segments(state, action) {
                 {},
                 currentSegment[action.payload.field],
                 {
-                  value: action.payload.value
+                  value: action.payload.value,
                 }
-              )
+              ),
             });
         }
         return currentSegment;
@@ -102,6 +104,13 @@ export default function segments(state, action) {
           : segmentIndex;
       nextState.splice(nextSegmentIndex, 0, ...segmentToMove);
       return nextState;
+    case RENAME_SEGMENT:
+      return state.map((segment) => {
+        if (segment.id === action.payload.segmentId) {
+          return { ...segment, name: action.payload.name };
+        }
+        return segment;
+      });
     default:
       return state;
   }

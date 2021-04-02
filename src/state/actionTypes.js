@@ -5,3 +5,4 @@ export const TOGGLE_FOLD = "TOGGLE_FOLD";
 export const ADD_SEGMENT = "ADD_SEGMENT";
 export const REMOVE_SEGMENT = "REMOVE_SEGMENT";
 export const MOVE_SEGMENT = "MOVE_SEGMENT";
+export const RENAME_SEGMENT = "RENAME_SEGMENT";

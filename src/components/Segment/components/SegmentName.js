@@ -1,62 +1,104 @@
-import React /* , { useState } */ from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+
 import { getSegmentById, getSegmentIndex } from "state/selectors";
-//import StyledActionButton from "./StyledActionButton";
+import { renameSegment } from "state/actions";
+import StyledActionButton from "./StyledActionButton";
+import { ReactComponent as PencilIconSvg } from "static/pencil_icon.svg";
 
-const SegmentName = ({ segmentId, name, position }) => {
-  // TODO Modification du nom du segment
+const SegmentName = ({ segmentId, name, position, dispatchName }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const inputRef = useRef();
 
-  /* const [isEditing, setIsEditing] = useState(false); */
+  useEffect(() => {
+    if (isEditing) {
+      inputRef.current.focus();
+      inputRef.current.selectionStart = 0;
+      inputRef.current.selectionEnd = inputRef.current.value.length;
+    }
+  }, [isEditing]);
+
+  function toggleEdit() {
+    setIsEditing(!isEditing);
+  }
+
+  function nameChangeHandler(event) {
+    const name = event.target.value;
+    dispatchName(name);
+  }
+
+  function blurHandler(event) {
+    setIsEditing(false);
+    if (!event.target.value) dispatchName(null);
+  }
+
+  function keyDownHandler(event) {
+    if (event.key === "Enter") {
+      inputRef.current.selectionStart = 0;
+      inputRef.current.selectionEnd = 0;
+      inputRef.current.blur();
+    }
+  }
 
   const displayedName = name ?? `Étape ${position}`;
 
   return (
     <Wrapper>
       <Title>
-        {/* <Input type="text" value={displayedName} readonly={isEditing} /> */}
         <Input
+          ref={inputRef}
           type="text"
           value={displayedName}
-          readonly={true}
-          onChange={() => {
-            console.log("Changed");
-          }}
+          onChange={nameChangeHandler}
+          onBlur={blurHandler}
+          onKeyDown={keyDownHandler}
+          readOnly={!isEditing}
+          maxLength={35}
         />
         <Placeholder aria-hidden>{displayedName}</Placeholder>
       </Title>
-      {/* <EditButton>X</EditButton> */}
+      {!isEditing && (
+        <EditActionZone>
+          <ActionButton
+            id={`editSegmentName-${segmentId}`}
+            className="actionButton"
+            hoverColor="secondary"
+            hoverStrokeColor="body"
+            onClick={toggleEdit}
+            aria-label="Renommer le segment"
+          >
+            <PencilIcon />
+          </ActionButton>
+        </EditActionZone>
+      )}
     </Wrapper>
   );
 };
 
 SegmentName.propTypes = {
   segmentId: PropTypes.number.isRequired,
-  name: PropTypes.string
 };
 
-const Wrapper = styled.div`
-  position: relative;
-`;
+const Wrapper = styled.div``;
 
 const TitleStyle = (theme) => css`
   font-weight: bold;
   font-size: 0.9rem;
   letter-spacing: 0.05em;
-  padding: 0.15em 0.75em 0em 0.75em; /* 0.55em 1.25em 0.25em 1.25em */
+  padding: 0.35em 0.25em 0em 1em;
   text-transform: uppercase;
   color: ${theme.color.white};
   line-height: 1.15;
 `;
 
 const Title = styled.h3`
-  position: absolute;
-  max-width: 100%;
+  position: relative;
+  display: inline-block;
+  max-width: 94%;
   margin: 0;
-  top: 0;
-  left: 0;
   background-color: ${({ theme }) => theme.color.primary};
   border-radius: 12px;
   padding: 0.25em 0.4em 0.15em 0.4em;
@@ -67,14 +109,17 @@ const Title = styled.h3`
 
 const Input = styled.input`
   position: absolute;
-  top: 0.4em;
-  left: 0.5em;
+  top: 0.25em;
+  left: 0;
   width: 100%;
   ${({ theme }) => TitleStyle(theme)}
   background: none;
   border: none;
   margin: 0;
   overflow: hidden;
+  &[readonly] {
+    outline: none;
+  }
 `;
 
 const Placeholder = styled.span`
@@ -85,19 +130,37 @@ const Placeholder = styled.span`
   max-width: 100%;
 `;
 
-/* const EditButton = styled(StyledActionButton)`
+const EditActionZone = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const ActionButton = styled(StyledActionButton)`
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 10em;
-  height: 10em;
-`; */
+  bottom: 0.5em;
+  left: -0.75em;
+  z-index: 20;
+`;
+
+const ActionIcon = styled.svg`
+  width: 0.8em;
+`;
+
+const PencilIcon = styled(ActionIcon)``.withComponent(PencilIconSvg);
 
 function mapStateToProps(state, ownProps) {
   return {
     name: getSegmentById(state, ownProps.segmentId).name,
-    position: getSegmentIndex(state, ownProps.segmentId) + 1
+    position: getSegmentIndex(state, ownProps.segmentId) + 1,
   };
 }
 
-export default connect(mapStateToProps)(SegmentName);
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    dispatchName: (value) => {
+      return dispatch(renameSegment(ownProps.segmentId, value));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SegmentName);

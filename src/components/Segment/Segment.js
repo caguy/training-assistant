@@ -22,7 +22,7 @@ const Segment = ({
   remove,
   move,
   canMoveUp,
-  canMoveDown
+  canMoveDown,
 }) => {
   const moveUpRef = useRef();
   const moveDownRef = useRef();
@@ -130,7 +130,7 @@ Segment.propTypes = {
   remove: PropTypes.func.isRequired,
   move: PropTypes.func.isRequired,
   canMoveUp: PropTypes.bool,
-  canMoveDown: PropTypes.bool
+  canMoveDown: PropTypes.bool,
 };
 
 const Container = styled.div`
@@ -155,13 +155,13 @@ const Container = styled.div`
 
 const Core = styled.div`
   position: relative;
-  margin: 1em 0 3em 0;
+  margin: -1em 0 3em 0;
   background-color: ${({ theme }) => theme.color.lightGrey};
   border-radius: 15px 15px 0 0;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   @media (min-width: ${({ theme }) => theme.bp.md}px) {
     border-radius: 15px;
-    margin: 1em 2em 3em 2em;
+    margin: -1em 2em 3em 2em;
   }
 `;
 
@@ -258,7 +258,7 @@ const FoldIconContainer = styled.div`
 `;
 
 const FoldIconStyle = {
-  width: "0.95em"
+  width: "0.95em",
 };
 
 const InputsContainer = styled.div`
@@ -314,7 +314,8 @@ function mapStateToProps(state, ownProps) {
     inputs: segment.inputs,
     folded: segment.folded,
     canMoveUp: getSegmentIndex(state, ownProps.id) > 0,
-    canMoveDown: getSegmentIndex(state, ownProps.id) < state.segments.length - 1
+    canMoveDown:
+      getSegmentIndex(state, ownProps.id) < state.segments.length - 1,
   };
 }
 
@@ -322,7 +323,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     toggleFold: () => dispatch(toggleFold(ownProps.id)),
     remove: () => dispatch(dispatchDeleteSegment(ownProps.id)),
-    move: (direction) => dispatch(moveSegment(ownProps.id, direction))
+    move: (direction) => dispatch(moveSegment(ownProps.id, direction)),
   };
 }
 

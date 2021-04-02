@@ -5,7 +5,8 @@ import {
   TOGGLE_FOLD,
   ADD_SEGMENT,
   REMOVE_SEGMENT,
-  MOVE_SEGMENT
+  MOVE_SEGMENT,
+  RENAME_SEGMENT,
 } from "state/actionTypes";
 
 export function setInputField(segmentId, oldField, newField) {
@@ -14,8 +15,8 @@ export function setInputField(segmentId, oldField, newField) {
     payload: {
       segmentId,
       oldField,
-      newField
-    }
+      newField,
+    },
   };
 }
 
@@ -25,8 +26,8 @@ export function setValue(segmentId, field, value) {
     payload: {
       segmentId,
       field,
-      value
-    }
+      value,
+    },
   };
 }
 
@@ -37,8 +38,8 @@ export function setTotal(speed, pace, time, distance) {
       speed,
       pace,
       time,
-      distance
-    }
+      distance,
+    },
   };
 }
 
@@ -46,15 +47,15 @@ export function toggleFold(segmentId) {
   return {
     type: TOGGLE_FOLD,
     payload: {
-      segmentId
-    }
+      segmentId,
+    },
   };
 }
 
 export function addSegment() {
   return {
     type: ADD_SEGMENT,
-    payload: {}
+    payload: {},
   };
 }
 
@@ -62,8 +63,8 @@ export function removeSegment(segmentId) {
   return {
     type: REMOVE_SEGMENT,
     payload: {
-      segmentId
-    }
+      segmentId,
+    },
   };
 }
 
@@ -72,7 +73,17 @@ export function moveSegment(segmentId, direction) {
     type: MOVE_SEGMENT,
     payload: {
       segmentId,
-      direction
-    }
+      direction,
+    },
+  };
+}
+
+export function renameSegment(segmentId, name) {
+  return {
+    type: RENAME_SEGMENT,
+    payload: {
+      segmentId,
+      name,
+    },
   };
 }
