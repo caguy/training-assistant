@@ -30,7 +30,7 @@ const BasicInput = ({
   return (
     <Wrapper>
       <Input
-        type="text"
+        type="number"
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={value}
@@ -97,6 +97,18 @@ const Input = styled.input`
   border: none;
   background: none;
   width: ${({ width }) => width};
+
+  // Hide browsers built-in controls
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 const Controls = styled.div`
