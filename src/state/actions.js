@@ -7,7 +7,7 @@ import {
   REMOVE_SEGMENT,
   MOVE_SEGMENT,
   RENAME_SEGMENT,
-} from "state/actionTypes";
+} from "@/state/actionTypes";
 
 export function setInputField(segmentId, oldField, newField) {
   return {

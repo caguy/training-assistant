@@ -1,10 +1,10 @@
-import { setValue, setTotal, addSegment, removeSegment } from "state/actions";
+import { setValue, setTotal, addSegment, removeSegment } from "@/state/actions";
 import {
   getOtherFieldType,
   getFieldValue,
-  getAllValues
-} from "state/selectors";
-import { PACE, SPEED, DISTANCE, TIME } from "state/constants";
+  getAllValues,
+} from "@/state/selectors";
+import { PACE, SPEED, DISTANCE, TIME } from "@/state/constants";
 import {
   calculateDistance,
   calculateTime,
@@ -12,8 +12,8 @@ import {
   calculateSpeed,
   convertPaceToSpeed,
   getNumericTime,
-  getParsedTime
-} from "utils";
+  getParsedTime,
+} from "@/utils";
 
 export const dispatchSpeed = (segmentId, speed) => (dispatch, getState) => {
   const state = getState();
@@ -55,28 +55,26 @@ export const dispatchPace = (segmentId, pace) => (dispatch, getState) => {
   dispatch(dispatchTotal());
 };
 
-export const dispatchDistance = (segmentId, distance) => (
-  dispatch,
-  getState
-) => {
-  const state = getState();
-  const pinnedType = getOtherFieldType(state, segmentId, DISTANCE.type);
+export const dispatchDistance =
+  (segmentId, distance) => (dispatch, getState) => {
+    const state = getState();
+    const pinnedType = getOtherFieldType(state, segmentId, DISTANCE.type);
 
-  dispatch(setValue(segmentId, DISTANCE.type, distance));
+    dispatch(setValue(segmentId, DISTANCE.type, distance));
 
-  if (pinnedType === SPEED.type || pinnedType === PACE.type) {
-    const currentSpeed = getFieldValue(state, segmentId, SPEED.type);
-    const time = calculateTime(distance, currentSpeed);
-    dispatch(setValue(segmentId, TIME.type, time));
-  } else if (pinnedType === TIME.type) {
-    const currentTime = getFieldValue(state, segmentId, TIME.type);
-    const speed = calculateSpeed(distance, currentTime);
-    const pace = convertSpeedToPace(speed);
-    dispatch(setValue(segmentId, SPEED.type, speed));
-    dispatch(setValue(segmentId, PACE.type, pace));
-  }
-  dispatch(dispatchTotal());
-};
+    if (pinnedType === SPEED.type || pinnedType === PACE.type) {
+      const currentSpeed = getFieldValue(state, segmentId, SPEED.type);
+      const time = calculateTime(distance, currentSpeed);
+      dispatch(setValue(segmentId, TIME.type, time));
+    } else if (pinnedType === TIME.type) {
+      const currentTime = getFieldValue(state, segmentId, TIME.type);
+      const speed = calculateSpeed(distance, currentTime);
+      const pace = convertSpeedToPace(speed);
+      dispatch(setValue(segmentId, SPEED.type, speed));
+      dispatch(setValue(segmentId, PACE.type, pace));
+    }
+    dispatch(dispatchTotal());
+  };
 
 export const dispatchTime = (segmentId, time) => (dispatch, getState) => {
   const state = getState();

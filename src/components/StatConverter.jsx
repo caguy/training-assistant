@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { Flipper, Flipped } from "react-flip-toolkit";
 
-import { Segment, Total } from "components";
-import { dispatchNewSegment } from "state/middlewares";
+import { Segment, Total } from ".";
+import { dispatchNewSegment } from "@/state/middlewares";
 
 const StatConverter = ({ segmentIds, addSegment }) => {
   const segmentComponents = segmentIds.map((segmentId) => (

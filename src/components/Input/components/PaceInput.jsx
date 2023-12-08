@@ -3,10 +3,10 @@ import PropType from "prop-types";
 import { connect } from "react-redux";
 
 import { BasicInput, StyledInputWrapper, StyledSeparator, StyledUnit } from ".";
-import { PACE } from "state/constants";
-import { getFieldValue } from "state/selectors";
-import { dispatchPace } from "state/middlewares";
-import { useInput } from "components/Input/hooks";
+import { PACE } from "@/state/constants";
+import { getFieldValue } from "@/state/selectors";
+import { dispatchPace } from "@/state/middlewares";
+import { useInput } from "@/components/Input/hooks";
 
 const PaceInput = ({ segmentId, value, dispatchValue }) => {
   const dispatchHandler = (field) => (typedValue) => {

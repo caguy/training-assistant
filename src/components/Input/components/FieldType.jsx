@@ -3,15 +3,15 @@ import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { SPEED, PACE, DISTANCE, TIME } from "state/constants";
-import { setInputField } from "state/actions";
+import { SPEED, PACE, DISTANCE, TIME } from "@/state/constants";
+import { setInputField } from "@/state/actions";
 import { keyframes } from "@emotion/react";
 
 const fieldLabelMap = {
   [SPEED.type]: SPEED.label,
   [PACE.type]: PACE.label,
   [TIME.type]: TIME.label,
-  [DISTANCE.type]: DISTANCE.label
+  [DISTANCE.type]: DISTANCE.label,
 };
 
 const FieldType = ({ segmentId, value, options, dispatchField }) => {
@@ -49,7 +49,7 @@ FieldType.propTypes = {
     PropTypes.oneOf([SPEED.type, PACE.type, TIME.type, DISTANCE.type])
       .isRequired
   ),
-  dispatchField: PropTypes.func.isRequired
+  dispatchField: PropTypes.func.isRequired,
 };
 
 const arrowAnimation = keyframes`
@@ -131,7 +131,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchField: (segmentId, field, value) => {
       dispatch(setInputField(segmentId, field, value));
-    }
+    },
   };
 }
 

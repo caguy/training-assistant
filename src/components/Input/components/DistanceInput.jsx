@@ -2,12 +2,12 @@ import React from "react";
 import PropType from "prop-types";
 import { connect } from "react-redux";
 
-import { DISTANCE } from "state/constants";
-import { getFieldValue } from "state/selectors";
-import { dispatchDistance } from "state/middlewares";
+import { DISTANCE } from "@/state/constants";
+import { getFieldValue } from "@/state/selectors";
+import { dispatchDistance } from "@/state/middlewares";
 import { BasicInput, StyledInputWrapper, StyledUnit } from ".";
-import { useInput } from "components/Input/hooks";
-import { stringifyDistance } from "utils";
+import { useInput } from "@/components/Input/hooks";
+import { stringifyDistance } from "@/utils";
 
 const DistanceInput = ({ segmentId, value, dispatchValue }) => {
   const dispatchHandler = (typedValue) => {
@@ -24,7 +24,7 @@ const DistanceInput = ({ segmentId, value, dispatchValue }) => {
     initialValue: stringifyDistance(value),
     dispatchHandler: dispatchHandler,
     nbDecimals: 2,
-    maxValue: 99.99
+    maxValue: 99.99,
   });
 
   return (
@@ -44,12 +44,12 @@ const DistanceInput = ({ segmentId, value, dispatchValue }) => {
 DistanceInput.propType = {
   segmentId: PropType.number.isRequired,
   value: PropType.number.isRequired,
-  dispatchValue: PropType.func.isRequired
+  dispatchValue: PropType.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    value: getFieldValue(state, ownProps.segmentId, DISTANCE.type)
+    value: getFieldValue(state, ownProps.segmentId, DISTANCE.type),
   };
 }
 
@@ -57,7 +57,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchValue: (segmentId, value) => {
       return dispatch(dispatchDistance(segmentId, value));
-    }
+    },
   };
 }
 

@@ -2,11 +2,11 @@ import React from "react";
 import PropType from "prop-types";
 import { connect } from "react-redux";
 
-import { SPEED } from "state/constants";
-import { getFieldValue } from "state/selectors";
-import { dispatchSpeed } from "state/middlewares";
-import { stringifySpeed } from "utils";
-import { useInput } from "components/Input/hooks";
+import { SPEED } from "@/state/constants";
+import { getFieldValue } from "@/state/selectors";
+import { dispatchSpeed } from "@/state/middlewares";
+import { stringifySpeed } from "@/utils";
+import { useInput } from "@/components/Input/hooks";
 import { BasicInput, StyledInputWrapper, StyledUnit } from ".";
 
 const SpeedInput = ({ segmentId, value, dispatchValue }) => {
@@ -23,7 +23,7 @@ const SpeedInput = ({ segmentId, value, dispatchValue }) => {
     initialValue: stringifySpeed(value),
     dispatchHandler: dispatchHandler,
     nbDecimals: 1,
-    maxValue: 99.9
+    maxValue: 99.9,
   });
 
   return (
@@ -43,19 +43,19 @@ const SpeedInput = ({ segmentId, value, dispatchValue }) => {
 SpeedInput.propTypes = {
   segmentId: PropType.number.isRequired,
   value: PropType.number.isRequired,
-  dispatchValue: PropType.func.isRequired
+  dispatchValue: PropType.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    value: getFieldValue(state, ownProps.segmentId, SPEED.type)
+    value: getFieldValue(state, ownProps.segmentId, SPEED.type),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatchValue: (segmentId, value) =>
-      dispatch(dispatchSpeed(segmentId, value))
+      dispatch(dispatchSpeed(segmentId, value)),
   };
 }
 

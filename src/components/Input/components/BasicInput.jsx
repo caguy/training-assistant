@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import PropType from "prop-types";
 
-import { ReactComponent as ArrowIcon } from "static/increase_icon.svg";
+import ArrowIcon from "@/static/increase_icon.svg?react";
 
 const BasicInput = ({
   value,

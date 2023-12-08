@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
-import { PACE, SPEED, DISTANCE, TIME } from "state/constants";
+import { PACE, SPEED, DISTANCE, TIME } from "@/state/constants";
 import {
   SpeedInput,
   PaceInput,
   DistanceInput,
   TimeInput,
-  FieldType
+  FieldType,
 } from "./components";
 
 const Input = ({ segmentId, type, options }) => {
@@ -16,7 +16,7 @@ const Input = ({ segmentId, type, options }) => {
     [SPEED.type]: SpeedInput,
     [PACE.type]: PaceInput,
     [DISTANCE.type]: DistanceInput,
-    [TIME.type]: TimeInput
+    [TIME.type]: TimeInput,
   };
 
   return (
@@ -37,7 +37,7 @@ Input.propTypes = {
     .isRequired,
   options: PropTypes.arrayOf(
     PropTypes.oneOf([TIME.type, SPEED.type, PACE.type, DISTANCE.type])
-  ).isRequired
+  ).isRequired,
 };
 
 const Wrapper = styled.div`

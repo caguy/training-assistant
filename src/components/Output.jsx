@@ -7,11 +7,11 @@ import {
   stringifySpeed,
   stringifyPace,
   stringifyTime,
-  stringifyDistance
-} from "utils";
-import { PACE, SPEED, TIME, DISTANCE } from "state/constants";
-import { getFieldValue, getTotalField } from "state/selectors";
-import { UnitStyle } from "styles";
+  stringifyDistance,
+} from "@/utils";
+import { PACE, SPEED, TIME, DISTANCE } from "@/state/constants";
+import { getFieldValue, getTotalField } from "@/state/selectors";
+import { UnitStyle } from "@/styles";
 
 const Output = ({ segmentId = null, type, content }) => {
   let stringifiedValue = null;
@@ -63,14 +63,14 @@ Output.propTypes = {
     PropTypes.number,
     PropTypes.exact({
       min: PropTypes.number,
-      sec: PropTypes.number
+      sec: PropTypes.number,
     }),
     PropTypes.exact({
       h: PropTypes.number,
       min: PropTypes.number,
-      sec: PropTypes.number
-    })
-  ])
+      sec: PropTypes.number,
+    }),
+  ]),
 };
 
 const Container = styled.div`
@@ -111,7 +111,7 @@ function mapStateToProps(state, ownProps) {
     content:
       typeof ownProps.segmentId === "number"
         ? getFieldValue(state, ownProps.segmentId, ownProps.type)
-        : getTotalField(state, ownProps.type).value
+        : getTotalField(state, ownProps.type).value,
   };
 }
 

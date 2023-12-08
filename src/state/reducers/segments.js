@@ -1,4 +1,4 @@
-import { SPEED, TIME, PACE, DISTANCE } from "state/constants";
+import { SPEED, TIME, PACE, DISTANCE } from "@/state/constants";
 import {
   ADD_SEGMENT,
   REMOVE_SEGMENT,
@@ -7,9 +7,9 @@ import {
   TOGGLE_FOLD,
   MOVE_SEGMENT,
   RENAME_SEGMENT,
-} from "state/actionTypes";
+} from "@/state/actionTypes";
 import { cloneDeep } from "lodash";
-import { getSegmentIndex } from "state/selectors";
+import { getSegmentIndex } from "@/state/selectors";
 
 let nextId;
 

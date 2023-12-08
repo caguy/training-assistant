@@ -4,10 +4,10 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
-import { getSegmentById, getSegmentIndex } from "state/selectors";
-import { renameSegment } from "state/actions";
+import { getSegmentById, getSegmentIndex } from "@/state/selectors";
+import { renameSegment } from "@/state/actions";
 import StyledActionButton from "./StyledActionButton";
-import { ReactComponent as PencilIconSvg } from "static/pencil_icon.svg";
+import PencilIconSvg from "@/static/pencil_icon.svg?react";
 
 const SegmentName = ({ segmentId, name, position, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);

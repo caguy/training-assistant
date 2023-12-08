@@ -3,10 +3,10 @@ import PropType from "prop-types";
 import { connect } from "react-redux";
 
 import { BasicInput, StyledInputWrapper, StyledSeparator } from ".";
-import { TIME } from "state/constants";
-import { getFieldValue } from "state/selectors";
-import { dispatchTime } from "state/middlewares";
-import { useInput } from "components/Input/hooks";
+import { TIME } from "@/state/constants";
+import { getFieldValue } from "@/state/selectors";
+import { dispatchTime } from "@/state/middlewares";
+import { useInput } from "@/components/Input/hooks";
 
 const TimeInput = ({ segmentId, value, dispatchValue }) => {
   const dispatchHandler = (field) => (typedValue) => {

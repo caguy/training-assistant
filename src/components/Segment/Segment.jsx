@@ -4,16 +4,16 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
-import { Input, Output } from "components";
+import { Input, Output } from "@/components";
 import { SegmentName, StyledActionButton } from "./components";
-import { PACE, SPEED, DISTANCE, TIME } from "state/constants";
-import { moveSegment, toggleFold } from "state/actions";
-import { getSegmentById, getSegmentIndex } from "state/selectors";
+import { PACE, SPEED, DISTANCE, TIME } from "@/state/constants";
+import { moveSegment, toggleFold } from "@/state/actions";
+import { getSegmentById, getSegmentIndex } from "@/state/selectors";
 
-import { ReactComponent as FoldIcon } from "static/fold_icon.svg";
-import { ReactComponent as DeleteIconSvg } from "static/delete_icon.svg";
-import { ReactComponent as ArrowIconSvg } from "static/arrow_icon.svg";
-import { dispatchDeleteSegment } from "state/middlewares";
+import FoldIcon from "@/static/fold_icon.svg?react";
+import DeleteIconSvg from "@/static/delete_icon.svg?react";
+import ArrowIconSvg from "@/static/arrow_icon.svg?react";
+import { dispatchDeleteSegment } from "@/state/middlewares";
 
 const Segment = ({
   id,

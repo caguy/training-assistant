@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { UnitStyle } from "styles";
+import { UnitStyle } from "@/styles";
 
 export const StyledUnit = styled.span`
   display: inline-block;

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import { Output } from "components";
-import { SPEED, PACE, TIME, DISTANCE } from "state/constants";
+import { Output } from "@/components";
+import { SPEED, PACE, TIME, DISTANCE } from "@/state/constants";
 
 const Total = () => {
   return (
