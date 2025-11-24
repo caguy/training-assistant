@@ -2,7 +2,6 @@
   "name": "training-assistant",
   "version": "1.0.0",
   "description": "Preparing run training made easy",
-  "homepage": "https://caguy.github.io/training-assistant",
   "keywords": [],
   "main": "src/index.js",
   "type": "module",
