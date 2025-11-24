@@ -5,7 +5,6 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/training-assistant",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
